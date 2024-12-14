@@ -1,7 +1,8 @@
 import enums.ActionLetter;
 import model.*;
+import payment.CardAcceptor;
 import payment.PaymentAcceptor;
-import payment.CoinAcceptor;  // Для монетоприемника
+import payment.CoinAcceptor;
 import util.UniversalArray;
 import util.UniversalArrayImpl;
 
@@ -27,8 +28,7 @@ public class AppRunner {
     }
 
     public static void run(PaymentAcceptor coinAcceptor) {
-        // Выбираем приемник (монетоприемник или картоприемник)
-        PaymentAcceptor paymentAcceptor = new CoinAcceptor(); // можно поменять на CardAcceptor
+        PaymentAcceptor paymentAcceptor = new CardAcceptor();
         AppRunner app = new AppRunner(paymentAcceptor);
 
         while (!isExit) {
@@ -40,7 +40,7 @@ public class AppRunner {
         print("В автомате доступны:");
         showProducts(products);
 
-        print("Монет на сумму: " + paymentAcceptor.getBalance());
+        print("Средства на сумму: " + paymentAcceptor.getBalance());
 
         UniversalArray<Product> allowProducts = new UniversalArrayImpl<>();
         allowProducts.addAll(getAllowedProducts().toArray());
@@ -87,7 +87,6 @@ public class AppRunner {
         }
     }
 
-    // Дополнительные методы
     private String fromConsole() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();

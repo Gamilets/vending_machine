@@ -18,7 +18,7 @@ public class CardAcceptor implements PaymentAcceptor {
         String otp = scanner.nextLine();
         System.out.println("Карта " + cardNumber + " проверена, средства зачислены.");
         balance += amount;
-        System.out.println("Карта пополнена на " + amount + "Текущий баланс: " + balance);
+        System.out.println("Карта пополнена на " + amount + ", Текущий баланс: " + balance);
     }
 
     @Override
